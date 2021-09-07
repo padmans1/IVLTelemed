@@ -15,11 +15,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Content
         [Inject] private IDashboardManager DashboardManager { get; set; }
 
         [CascadingParameter] private HubConnection HubConnection { get; set; }
-        [Parameter] public int ProductCount { get; set; }
-        [Parameter] public int BrandCount { get; set; }
-        [Parameter] public int DocumentCount { get; set; }
-        [Parameter] public int DocumentTypeCount { get; set; }
-        [Parameter] public int DocumentExtendedAttributeCount { get; set; }
+       
         [Parameter] public int UserCount { get; set; }
         [Parameter] public int RoleCount { get; set; }
 
@@ -47,11 +43,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Content
             var response = await DashboardManager.GetDataAsync();
             if (response.Succeeded)
             {
-                ProductCount = response.Data.ProductCount;
-                BrandCount = response.Data.BrandCount;
-                DocumentCount = response.Data.DocumentCount;
-                DocumentTypeCount = response.Data.DocumentTypeCount;
-                DocumentExtendedAttributeCount = response.Data.DocumentExtendedAttributeCount;
+               
                 UserCount = response.Data.UserCount;
                 RoleCount = response.Data.RoleCount;
                 foreach (var item in response.Data.DataEnterBarChart)

@@ -48,7 +48,7 @@ else
         <MudTh><MudTableSortLabel T="GetAllPagedPatientsResponse" SortLabel="FirstName">@_localizer["FirstName"]</MudTableSortLabel></MudTh>
         <MudTh><MudTableSortLabel T="GetAllPagedPatientsResponse" SortLabel="LastName">@_localizer["LastName"]</MudTableSortLabel></MudTh>
         <MudTh><MudTableSortLabel T="GetAllPagedPatientsResponse" SortLabel="Gender">@_localizer["Gender"]</MudTableSortLabel></MudTh>
-        <MudTh><MudTableSortLabel T="GetAllPagedPatientsResponse" SortLabel="DOB">@_localizer["DOB"]</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel T="GetAllPagedPatientsResponse" SortLabel="Age">@_localizer["Age"]</MudTableSortLabel></MudTh>
         <MudTh Style="text-align:right">@_localizer["Actions"]</MudTh>
     </HeaderContent>
     <RowTemplate>
@@ -65,7 +65,7 @@ else
         <MudTd DataLabel="Gender">
             <MudHighlighter Text="@context.Gender" HighlightedText="@_searchString" />
         </MudTd>
-        <MudTd DataLabel="DOB">
+        <MudTd DataLabel="Age">
             <MudHighlighter Text="@((DateTime.Now.Year - context.DOB.Year).ToString())" HighlightedText="@_searchString" />
         </MudTd>
 

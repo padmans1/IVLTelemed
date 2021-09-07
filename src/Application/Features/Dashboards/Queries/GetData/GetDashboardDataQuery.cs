@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using BlazorHero.CleanArchitecture.Domain.Entities.ExtendedAttributes;
 using BlazorHero.CleanArchitecture.Domain.Entities.Misc;
 using Microsoft.Extensions.Localization;
-
+using BlazorHero.CleanArchitecture.Application.Models.Telemed;
 namespace BlazorHero.CleanArchitecture.Application.Features.Dashboards.Queries.GetData
 {
     public class GetDashboardDataQuery : IRequest<Result<DashboardDataResponse>>
@@ -38,11 +38,8 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Dashboards.Queries.G
         {
             var response = new DashboardDataResponse
             {
-                ProductCount = await _unitOfWork.Repository<Product>().Entities.CountAsync(cancellationToken),
-                BrandCount = await _unitOfWork.Repository<Brand>().Entities.CountAsync(cancellationToken),
-                DocumentCount = await _unitOfWork.Repository<Document>().Entities.CountAsync(cancellationToken),
-                DocumentTypeCount = await _unitOfWork.Repository<DocumentType>().Entities.CountAsync(cancellationToken),
-                DocumentExtendedAttributeCount = await _unitOfWork.Repository<DocumentExtendedAttribute>().Entities.CountAsync(cancellationToken),
+                VisitCount = await _unitOfWork.Repository<Visit>().Entities.CountAsync(cancellationToken),
+                ImagesCount = await _unitOfWork.Repository<Image>().Entities.CountAsync(cancellationToken),
                 UserCount = await _userService.GetCountAsync(),
                 RoleCount = await _roleService.GetCountAsync()
             };

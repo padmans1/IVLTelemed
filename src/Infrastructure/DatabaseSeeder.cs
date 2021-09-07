@@ -66,24 +66,25 @@ namespace BlazorHero.CleanArchitecture.Infrastructure
                     userName = "anilM8" + i.ToString();
 
                 }
-                var patient = new BlazorHeroUser()
-                {
-                    FirstName = firstName,
-                    LastName = lastName,
-                    Email = email,
-                    DOB = new DateTime(1980 + i, 1, 1),
-                    Gender = "Male",
-                    UserType = UserType.Patient,
-                    UserName = userName
+                // AddVisit(email);
+                // var patient = new BlazorHeroUser()
+                // {
+                //     FirstName = firstName,
+                //     LastName = lastName,
+                //     Email = email,
+                //     DOB = new DateTime(1980 + i, 1, 1),
+                //     Gender = "Male",
+                //     UserType = UserType.Patient,
+                //     UserName = userName
                     
-                };
+                // };
 
-                var patientInfo = new PatientInfo()
-                {
-                    MRN = "IVL_" + i.ToString(),
-                    Patient = patient
-                };
-                AddPatient(patientInfo);
+                // var patientInfo = new PatientInfo()
+                // {
+                //     MRN = "IVL_" + i.ToString(),
+                //     Patient = patient
+                // };
+                // AddPatient(patientInfo);
 
             }
 
@@ -191,6 +192,21 @@ namespace BlazorHero.CleanArchitecture.Infrastructure
                     _logger.LogInformation(_localizer["Seeded Patient with Basic Role."]);
                 }
               
+            }).GetAwaiter().GetResult();
+        }
+        private void AddVisit(string email)
+        {
+            Task.Run( async () =>
+            {
+                var basicUserInDb = await _userManager.FindByEmailAsync(email);
+                if(basicUserInDb != null)
+                {
+                    var visit = new Visit(){
+                        Patient = basicUserInDb,
+                        Description = "Test Visit"
+                    };
+                   var dbData =  await _db.AddAsync<Visit>(visit);
+                }
             }).GetAwaiter().GetResult();
         }
     }
